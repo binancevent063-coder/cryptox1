@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CryptoX - Download App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #090b0e;
+    --bg-card: #12151b;
+    --bg-card-hover: #181c24;
+    --gold-primary: #f3ba2f;
+    --gold-light: #fcd535;
+    --gold-dark: #c99416;
+    --text-white: #ffffff;
+    --text-muted: #848e9c;
+    --green-up: #0ecb81;
+    --red-down: #f6465d;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(243, 186, 47, 0.35);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #050608;
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 440px;
+    background: radial-gradient(circle at 50% 0%, #2a210d 0%, #0d0f13 38%, #090b0e 100%);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 32px;
+    overflow-x: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 18px 14px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .brand-text h1 span {
+    color: var(--gold-primary);
+  }
+
+  .brand-text p {
+    font-size: 10.5px;
+    color: #b7bdc6;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+  }
+
+  .version-pill {
+    background: rgba(243, 186, 47, 0.12);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 20px;
+  }
+
+  .section-wrapper {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  .hero-download-card {
+    position: relative;
+    border-radius: 20px;
+    padding: 24px 18px;
+    background: linear-gradient(125deg, #1d1a12 0%, #13151a 50%, #261e0d 100%);
+    border: 1px solid rgba(252, 213, 53, 0.48);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 0 18px rgba(243, 186, 47, 0.12);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .app-icon-ring {
+    width: 82px;
+    height: 82px;
+    border-radius: 24px;
+    margin: 0 auto 14px;
+    background: linear-gradient(145deg, #252012 0%, #12151b 100%);
+    border: 1.5px solid var(--gold-primary);
+    box-shadow: 0 0 28px rgba(243, 186, 47, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-download-card h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .hero-download-card h2 span {
+    color: var(--gold-primary);
+  }
+
+  .hero-download-card p {
+    font-size: 12.5px;
+    color: #b7bdc6;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .apk-meta-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .meta-box {
+    background: rgba(9, 11, 14, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 9px 6px;
+  }
+
+  .meta-box span {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .meta-box strong {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-white);
+  }
+
+  .download-apk-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #f3ba2f 0%, #fcd535 100%);
+    color: #0b0e11;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 18px;
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(243, 186, 47, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .download-apk-btn:active {
+    transform: scale(0.98);
+  }
+
+  .download-status {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-up);
+    min-height: 18px;
+  }
+
+  .card-box {
+    background: linear-gradient(180deg, #13161c 0%, #0e1116 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    background: #171b22;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 13px;
+    padding: 11px 12px;
+  }
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    background: rgba(243, 186, 47, 0.14);
+    color: var(--gold-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .feature-text h4 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-white);
+  }
+
+  .feature-text p {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 12px;
+    color: #d1d5db;
+    line-height: 1.45;
+  }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gold-primary);
+    color: #0b0e11;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    .app-container {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .app-container {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    body {
+      padding: 16px 0;
+    }
+    .app-container {
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: calc(100vh - 32px);
+      overflow: hidden;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    body {
+      padding: 20px 0;
+    }
+    .app-container {
+      border-radius: 30px;
+      border: 1px solid rgba(243, 186, 47, 0.18);
+      min-height: calc(100vh - 40px);
+      overflow: hidden;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none">
+          <path d="M20 3L26.5 9.5L23.5 12.5L20 9L16.5 12.5L13.5 9.5L20 3Z" fill="#F3BA2F"/>
+          <path d="M9.5 13.5L12.5 16.5L9 20L12.5 23.5L9.5 26.5L3 20L9.5 13.5Z" fill="#F3BA2F"/>
+          <path d="M30.5 13.5L37 20L30.5 26.5L27.5 23.5L31 20L27.5 16.5L30.5 13.5Z" fill="#F3BA2F"/>
+          <path d="M20 15.2L24.8 20L20 24.8L15.2 20L20 15.2Z" fill="#FCD535"/>
+          <path d="M20 37L13.5 30.5L16.5 27.5L20 31L23.5 27.5L26.5 30.5L20 37Z" fill="#F3BA2F"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>Crypto<span>X</span></h1>
+        <p>Trade &bull; Earn &bull; Grow</p>
+      </div>
+    </div>
+
+    <span class="version-pill">v1.0 APK</span>
+  </header>
+
+  <section class="section-wrapper">
+    <div class="hero-download-card">
+      <div class="app-icon-ring">
+        <svg width="46" height="46" viewBox="0 0 40 40" fill="none">
+          <path d="M20 3L26.5 9.5L23.5 12.5L20 9L16.5 12.5L13.5 9.5L20 3Z" fill="#F3BA2F"/>
+          <path d="M9.5 13.5L12.5 16.5L9 20L12.5 23.5L9.5 26.5L3 20L9.5 13.5Z" fill="#F3BA2F"/>
+          <path d="M30.5 13.5L37 20L30.5 26.5L27.5 23.5L31 20L27.5 16.5L30.5 13.5Z" fill="#F3BA2F"/>
+          <path d="M20 15.2L24.8 20L20 24.8L15.2 20L20 15.2Z" fill="#FCD535"/>
+          <path d="M20 37L13.5 30.5L16.5 27.5L20 31L23.5 27.5L26.5 30.5L20 37Z" fill="#F3BA2F"/>
+        </svg>
+      </div>
+
+      <h2>Download <span>CryptoX</span> App</h2>
+      <p>Get the official Android package (cryptox.apk) for fast mobile access, live market updates, and instant alerts.</p>
+
+      <div class="apk-meta-row">
+        <div class="meta-box">
+          <span>File Name</span>
+          <strong>cryptox.apk</strong>
+        </div>
+        <div class="meta-box">
+          <span>Platform</span>
+          <strong>Android</strong>
+        </div>
+        <div class="meta-box">
+          <span>Source</span>
+          <strong>GitHub</strong>
+        </div>
+      </div>
+
+      <button type="button" class="download-apk-btn" id="downloadApkBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Download cryptox.apk</span>
+      </button>
+
+      <div class="download-status" id="downloadStatusText"></div>
+    </div>
+  </section>
+
+  <section class="section-wrapper">
+    <div class="card-box">
+      <div class="card-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#F3BA2F">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>App Highlights</span>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Live Market Tracking</h4>
+            <p>Real-time price movements and sparkline charts designed for mobile screens.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Instant Deposit Notifications</h4>
+            <p>Get notified right on your phone when funds arrive from an agent.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Session &amp; PIN Protection</h4>
+            <p>Saved number lock and 5-digit PIN authentication for secure access.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrapper">
+    <div class="card-box">
+      <div class="card-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F3BA2F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>How to Install</span>
+      </div>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <span class="step-num">1</span>
+          <span>Tap the <strong>Download cryptox.apk</strong> button above to start downloading from GitHub.</span>
+        </div>
+        <div class="step-row">
+          <span class="step-num">2</span>
+          <span>Open the downloaded <strong>cryptox.apk</strong> file from your browser or Downloads folder.</span>
+        </div>
+        <div class="step-row">
+          <span class="step-num">3</span>
+          <span>Allow installation from this source if prompted and tap <strong>Install</strong>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const GITHUB_APK_URL = "https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/releases/download/v1.0/cryptox.apk";
+
+  const downloadBtn = document.getElementById('downloadApkBtn');
+  const statusEl = document.getElementById('downloadStatusText');
+
+  downloadBtn.addEventListener('click', () => {
+    statusEl.textContent = "Starting download for cryptox.apk...";
+
+    const link = document.createElement('a');
+    link.href = GITHUB_APK_URL;
+    link.setAttribute('download', 'cryptox.apk');
+    link.setAttribute('target', '_blank');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => {
+      statusEl.textContent = "Download triggered. Check your browser downloads.";
+    }, 800);
+  });
+</script>
+
+</body>
+</html>
